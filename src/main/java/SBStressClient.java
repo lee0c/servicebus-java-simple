@@ -16,6 +16,7 @@ import java.util.concurrent.Executors;
 public class SBStressClient {
 
     static final String CONNECTION_STRING_ENV_VAR = "SERVICEBUS_CONNECTION_STRING";
+    static final String QUEUE_NAME_ENV_VAR = "QUEUE_NAME";
     
     // Only used for proxy
     static final String PROXY_HOSTNAME_ENV_VAR = "PROXY_HOSTNAME";
@@ -115,7 +116,7 @@ public class SBStressClient {
     }
 
     static ConnectionStringBuilder getConnStringBuilderForProxy() {
-        ConnectionStringBuilder connStrBuilder = new ConnectionStringBuilder(System.getenv(CONNECTION_STRING_ENV_VAR), "basicqueue");
+        ConnectionStringBuilder connStrBuilder = new ConnectionStringBuilder(System.getenv(CONNECTION_STRING_ENV_VAR), System.getenv(QUEUE_NAME_ENV_VAR));
         connStrBuilder.setTransportType(TransportType.AMQP_WEB_SOCKETS);
 
         return connStrBuilder;
